@@ -11,6 +11,17 @@ async function getBoards(pageNo = 1) {
   return page;
 }
 
+async function getBoard(bno, hit) {
+  let board = null;
+  try {
+    const response = await axios.get(`/board/${bno}`, { params: { hit } });
+    board = response.data;
+  } catch (error) {
+    console.log(error);
+  }
+  return board;
+}
+
 async function download(bno) {
   let blob = null;
   try {
@@ -22,4 +33,4 @@ async function download(bno) {
   return blob;
 }
 
-export default { getBoards, download };
+export default { getBoards, download, getBoard };
