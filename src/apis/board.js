@@ -22,6 +22,17 @@ async function getBoard(bno, hit) {
   return board;
 }
 
+async function deleteBoard(bno) {
+  let result = null;
+  try {
+    const response = await axios.delete(`/board/${bno}`);
+    result = response.data;
+  } catch (error) {
+    console.log(error);
+  }
+  return result;
+}
+
 async function download(bno) {
   let blob = null;
   try {
@@ -33,4 +44,4 @@ async function download(bno) {
   return blob;
 }
 
-export default { getBoards, download, getBoard };
+export default { getBoards, download, getBoard, deleteBoard };
