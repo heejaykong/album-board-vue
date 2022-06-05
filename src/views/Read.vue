@@ -10,7 +10,7 @@
       <span>작성일: {{ new Date(board.bdate).toLocaleDateString() }}</span>
       <span>조회수: {{ board.bhitcount }}</span>
       <router-link :to="`/?pageNo=${pageNo}`">목록</router-link>
-      <router-link :to="`/updateform?bno=${bno}`">수정</router-link>
+      <router-link :to="`/updateform?bno=${bno}&pageNo=${pageNo}`">수정</router-link>
       <button @click="handleRemove">삭제</button>
     </div>
   </div>

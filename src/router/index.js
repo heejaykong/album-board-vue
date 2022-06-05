@@ -17,6 +17,10 @@ const routes = [
     path: "/writeform",
     component: () => import(/* webpackChunkName: "board" */ "../views/WriteForm.vue"),
   },
+  {
+    path: "/updateform",
+    component: () => import(/* webpackChunkName: "board" */ "../views/UpdateForm.vue"),
+  },
 ];
 
 const router = createRouter({
