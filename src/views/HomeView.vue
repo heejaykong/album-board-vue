@@ -6,6 +6,15 @@
         <BoardItem :board="board" :pageNo="page.pager.pageNo"></BoardItem>
       </div>
     </section>
+    <div class="pagination">
+      <button @click="changePageNo(1)">처음</button>
+      <button v-if="!(page.pager.groupNo === 1)" @click="changePageNo(page.pager.startPageNo - 1)">이전</button>
+      <span v-for="pageNo in range(page.pager.startPageNo, page.pager.endPageNo)" :key="pageNo">
+        <button @click="changePageNo(pageNo)">{{ pageNo }}</button>
+      </span>
+      <button v-if="!(page.pager.groupNo === page.pager.totalGroupNo)" @click="changePageNo(page.pager.endPageNo + 1)">이후</button>
+      <button @click="changePageNo(page.pager.totalPageNo)">맨끝</button>
+    </div>
   </div>
 </template>
 
@@ -21,9 +30,23 @@ const router = useRouter();
 const page = ref(null);
 
 watch(route, (newURL, oldURL) => {
-  const pageNo = newURL.query.pageNo ? newURL.query.pageNo : 1;
-  getBoards(pageNo);
+  if (newURL.path === "/") { // 이 경로일때만 다음처럼 처리
+    const pageNo = newURL.query.pageNo ? newURL.query.pageNo : 1;
+    getBoards(pageNo);
+  }
 });
+
+function changePageNo(pageNo) {
+  router.push(`/?pageNo=${pageNo}`);
+}
+
+function range(start, end) {
+  let pageNoRange = [];
+  for (let i = start; i <= end; i++) {
+    pageNoRange.push(i);
+  }
+  return pageNoRange;
+}
 
 async function getBoards(pageNo) {
   const result = await apiBoard.getBoards(pageNo);
@@ -44,5 +67,9 @@ init();
 }
 .temp {
   background-color: black;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
 }
 </style>
