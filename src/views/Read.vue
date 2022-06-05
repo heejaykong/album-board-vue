@@ -5,10 +5,11 @@
         <img :src="battach" width="300" alt="" />
       </div>
       <span>{{ board.btitle }}</span>
+      <span>{{ board.bcontent }}</span>
       <span>작성자: {{ board.mid }}</span>
       <span>작성일: {{ new Date(board.bdate).toLocaleDateString() }}</span>
       <span>조회수: {{ board.bhitcount }}</span>
-      <router-link :to="``">목록</router-link>
+      <router-link :to="`/?pageNo=${pageNo}`">목록</router-link>
       <router-link :to="`/updateform?bno=${bno}`">수정</router-link>
       <button @click="handleRemove">삭제</button>
     </div>

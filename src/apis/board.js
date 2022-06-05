@@ -22,6 +22,17 @@ async function getBoard(bno, hit) {
   return board;
 }
 
+async function writeBoard(multipartFormData) {
+  let createdBoard = null;
+  try {
+    const response = await axios.post("/board/", multipartFormData);
+    createdBoard = response.data;
+  } catch (error) {
+    console.log(error);
+  }
+  return createdBoard;
+}
+
 async function deleteBoard(bno) {
   let result = null;
   try {
@@ -44,4 +55,4 @@ async function download(bno) {
   return blob;
 }
 
-export default { getBoards, download, getBoard, deleteBoard };
+export default { getBoards, download, getBoard, deleteBoard, writeBoard };
