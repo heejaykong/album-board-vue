@@ -23,6 +23,7 @@ export default createStore({
     },
   },
   actions: {
+    // 로그인 성공시
     saveAuth(context, payload) {
       context.commit("setUserId", payload.userId);
       context.commit("setAuthToken", payload.authToken);
@@ -32,6 +33,17 @@ export default createStore({
 
       // *** 가장 중요 ***
       axiosConfig.addAuthHeader(payload.authToken);
+    },
+    // 로그아웃 시
+    deleteAuth(context, payload) {
+      context.commit("setUserId", "");
+      context.commit("setAuthToken", "");
+
+      sessionStorage.removeItem("userId");
+      sessionStorage.removeItem("authToken");
+
+      // *** 가장 중요 ***
+      axiosConfig.removeAuthHeader();
     },
   },
   modules: {},

@@ -37,7 +37,19 @@ async function login(user) {
   return result;
 }
 
+async function logout() {
+  try {
+    // 서버쪽 정리
+    await axios.get("/member/logout");
+    // 프론트쪽 정리
+    store.dispatch("deleteAuth");
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default {
   join,
   login,
+  logout,
 };
