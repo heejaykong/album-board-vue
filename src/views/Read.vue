@@ -1,17 +1,17 @@
 <template>
   <div v-if="board">
     <div class="box-item">
-      <div v-if="board.battachoname" class="thumbnail">
-        <img :src="battach" width="300" alt="" />
+      <img v-if="board.battachoname" :src="battach" alt=""/>
+      <div class="content">
+        <span>제목: <strong>{{ board.btitle }}</strong></span>
+        <span>내용: <strong>{{ board.bcontent }}</strong></span>
+        <span>작성자: <strong>{{ board.mid }}</strong></span>
+        <span>작성일: <strong>{{ new Date(board.bdate).toLocaleDateString() }}</strong></span>
+        <span>조회수: <strong>{{ board.bhitcount }}</strong></span>
       </div>
-      <span>{{ board.btitle }}</span>
-      <span>{{ board.bcontent }}</span>
-      <span>작성자: {{ board.mid }}</span>
-      <span>작성일: {{ new Date(board.bdate).toLocaleDateString() }}</span>
-      <span>조회수: {{ board.bhitcount }}</span>
-      <router-link :to="`/?pageNo=${pageNo}`">목록</router-link>
-      <router-link v-if="isMyBoard()" :to="`/updateform?bno=${bno}&pageNo=${pageNo}`">수정</router-link>
-      <button v-if="isMyBoard()" @click="handleRemove">삭제</button>
+      <router-link :to="`/?pageNo=${pageNo}`" class="tiger-btn">목록</router-link>
+      <router-link v-if="isMyBoard()" :to="`/updateform?bno=${bno}&pageNo=${pageNo}`" class="tiger-btn">수정</router-link>
+      <button v-if="isMyBoard()" @click="handleRemove" class="tiger-btn tiger-btn-danger">삭제</button>
     </div>
   </div>
 </template>
@@ -64,7 +64,14 @@ getBoard();
 .box-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
+img {
+  width: 100%;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  font-size: 0.8rem;
 }
 </style>

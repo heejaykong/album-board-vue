@@ -1,14 +1,14 @@
 <template>
   <form @submit.prevent="handleSubmit">
-    제목:
-    <input v-model="board.btitle" type="text" />
-    내용:
-    <input v-model="board.bcontent" type="text" />
-    첨부이미지:
+    <label>제목:</label>
+    <input v-model="board.btitle" type="text" placeholder="제목을 입력해 주세요."/>
+    <label>내용:</label>
+    <input v-model="board.bcontent" type="text" placeholder="내용을 간단히 입력해 주세요."/>
+    <label>첨부이미지:</label>
     <input ref="imageInput" type="file" />
 
-    <input type="submit" value="작성" />
-    <router-link to="/">취소</router-link>
+    <input type="submit" value="작성" class="tiger-btn"/>
+    <router-link to="/" class="tiger-btn">취소</router-link>
   </form>
 </template>
 

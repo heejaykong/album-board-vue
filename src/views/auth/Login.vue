@@ -1,10 +1,10 @@
 <template>
-  <form @submit.prevent="handleLogin" class="temp">
+  <form @submit.prevent="handleLogin">
     아이디:
-    <input type="text" v-model="user.mid" />
+    <input type="text" v-model="user.mid" placeholder="아이디를 입력해 주세요."/>
     비밀번호:
-    <input type="text" v-model="user.mpassword" />
-    <input type="submit" value="로그인" />
+    <input type="text" v-model="user.mpassword" placeholder="비밀번호를 입력해 주세요."/>
+    <input type="submit" value="로그인"  class="tiger-btn"/>
   </form>
   <AlertDialog
     @close="showAlertDialog=false"
@@ -53,10 +53,4 @@ async function handleLogin() {
 }
 </script>
 
-<style scoped>
-.temp {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
-}
-</style>
+<style scoped></style>

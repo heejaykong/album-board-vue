@@ -11,8 +11,8 @@
         <img :src="battach" alt="" />
       </div>
 
-      <input type="submit" value="수정" />
-      <router-link :to="`/read?bno=${bno}&pageNo=${pageNo}&hit=false`">취소</router-link>
+      <input type="submit" value="수정" class="tiger-btn"/>
+      <router-link :to="`/read?bno=${bno}&pageNo=${pageNo}&hit=false`" class="tiger-btn tiger-btn-secondary">취소</router-link>
     </form>
   </div>
 </template>

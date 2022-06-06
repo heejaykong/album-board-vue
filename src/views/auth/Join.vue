@@ -1,11 +1,11 @@
 <template>
   <form @submit.prevent="handleJoin" class="temp">
     아이디:
-    <input type="text" v-model="user.mid" />
+    <input type="text" v-model="user.mid" placeholder="아이디를 입력해 주세요."/>
     이름:
-    <input type="text" v-model="user.mname" />
+    <input type="text" v-model="user.mname" placeholder="이름을 입력해 주세요."/>
     비밀번호:
-    <input type="text" v-model="user.mpassword" />
+    <input type="text" v-model="user.mpassword" placeholder="비밀번호를 입력해 주세요."/>
     <label>User Role:</label>
     <select v-model="user.mrole">
       <option value="ROLE_ADMIN">ROLE_ADMIN</option>
@@ -13,9 +13,9 @@
       <option value="ROLE_USER" selected>ROLE_USER</option>
     </select>
     이메일:
-    <input type="text" v-model="user.memail" />
+    <input type="text" v-model="user.memail" placeholder="이메일을 입력해 주세요."/>
 
-    <input type="submit" value="가입하기" />
+    <input type="submit" value="가입하기"  class="tiger-btn"/>
   </form>
   <AlertDialog
     @close="showAlertDialog=false"

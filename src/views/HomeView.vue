@@ -1,7 +1,7 @@
 <template>
   <div v-if="page">
+    <router-link v-if="$store.state.userId" :to="`/writeform`" class="tiger-btn tiger-btn-sm">사진 올리기</router-link>
     <section class="boards-section">
-      <router-link v-if="$store.state.userId" :to="`/writeform`">글을 작성해요</router-link>
       <div v-for="board of page.boards" :key="board.bno">
         <BoardItem :board="board" :pageNo="page.pager.pageNo"></BoardItem>
       </div>
@@ -64,12 +64,38 @@ init();
 .boards-section {
   display: flex;
   flex-wrap: wrap;
-}
-.temp {
-  background-color: black;
+  justify-content: center;
+  margin-top: 1rem;
 }
 .pagination {
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
+}
+.pagination button {
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: gold;
+  border: 0.25rem solid black;
+  padding: 1rem 0.7rem;
+  margin: 0.2rem;
+  height: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.3rem;
+  border-width: 0.15rem 0.15rem 0.3rem;
+}
+.pagination button:hover {
+  color: inherit;
+  background-color: rgb(240, 204, 1);
+}
+.pagination button:active {
+  color: inherit;
+  height: 1.85rem;
+  border-radius: 0.3rem;
+  border-width: 0.15rem 0.15rem 0.15rem;
+  transform: translateY(0.15rem);
 }
 </style>

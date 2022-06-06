@@ -37,27 +37,4 @@ async function handleLogout() {
 #logo {
   font-size: 3rem;
 }
-.tiger-btn {
-  color: inherit;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
-  font-weight: 600;
-  background-color: gold;
-  border: 0.25rem solid black;
-  border-radius: 0.45rem;
-  border-width: 0.25rem 0.25rem 0.6rem;
-  height: 4rem;
-  padding: 0 1.3rem;
-  margin: 0.2rem;
-}
-.tiger-btn:hover {
-  background-color: rgb(240, 204, 1);
-}
-.tiger-btn:active {
-  border-width: 0.25rem 0.25rem 0.25rem;
-  height: 3.7rem;
-  transform: translateY(0.3rem);
-}
 </style>
