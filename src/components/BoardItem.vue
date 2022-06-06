@@ -1,15 +1,15 @@
 <template>
   <div @click="handleBoardItemClick" class="box-item">
-    <div v-if="board.battachoname" class="thumbnail">
-      <img :src="battach" width="200" height="200" alt="" />
+    <img v-if="board.battachoname" :src="battach" class="thumbnail" alt="" />
+    <img v-if="!board.battachoname" :src="require('@/assets/no-image.jpg')" class="thumbnail" alt="" />
+    <div class="overlay">
+      <div class="overlay__text-box">
+        <h5 class="overlay__text">{{ board.btitle }}</h5>
+        <span class="overlay__text">작성자: {{ board.mid }}</span>
+        <span class="overlay__text">{{ new Date(board.bdate).toLocaleDateString() }}</span>
+        <span class="overlay__text">조회수: {{ board.bhitcount }}</span>
+      </div>
     </div>
-    <div v-if="!board.battachoname" class="thumbnail">
-      <img :src="require('@/assets/no-image.jpg')" width="300" alt="" />
-    </div>
-    <span>{{ board.btitle }}</span>
-    <span>{{ board.mid }}</span>
-    <span>{{ new Date(board.bdate).toLocaleDateString() }}</span>
-    <span>{{ board.bhitcount }}</span>
   </div>
 </template>
 
@@ -45,12 +45,57 @@ loadImage(props.board.bno);
 
 <style scoped>
 .box-item {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 15rem;
+  height: 15rem;
+  overflow: hidden;
 }
 .box-item:hover {
   background-color: black;
 }
+.thumbnail {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform .3s;
+}
+.box-item:hover .thumbnail{
+  -ms-transform: scale(1.1); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.1);
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .3s ease;
+  background-color: black;
+}
+.box-item:hover .overlay {
+  opacity: 0.6;
+}
+.overlay__text-box {
+  color: white;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
 </style>
