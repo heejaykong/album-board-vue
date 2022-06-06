@@ -23,6 +23,16 @@ export default createStore({
     },
   },
   actions: {
+    // 기존 인증정보 가져오기(앱 처음 로딩할때 호출)
+    loadAuth(context, payload) {
+      context.commit("setUserId", sessionStorage.getItem("userId") || "");
+      context.commit("setAuthToken", sessionStorage.getItem("authToken") || "");
+
+      if (context.state.authToken) {
+        // *** 가장 중요 ***
+        axiosConfig.addAuthHeader(context.state.authToken);
+      }
+    },
     // 로그인 성공시
     saveAuth(context, payload) {
       context.commit("setUserId", payload.userId);

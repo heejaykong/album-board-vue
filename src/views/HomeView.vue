@@ -1,7 +1,7 @@
 <template>
   <div v-if="page">
     <section class="boards-section">
-      <router-link :to="`/writeform`">글을 작성해요</router-link>
+      <router-link v-if="$store.state.userId" :to="`/writeform`">글을 작성해요</router-link>
       <div v-for="board of page.boards" :key="board.bno">
         <BoardItem :board="board" :pageNo="page.pager.pageNo"></BoardItem>
       </div>
