@@ -1,7 +1,7 @@
 <template>
   <header class="header">
     <div class="header__col">
-      <router-link to="/" id="logo">🐱</router-link>
+      <router-link to="/" id="logo">🐱<span class="title">앨범게시판</span></router-link>
     </div>
     <div class="header__col">
       <router-link v-if="!$store.state.userId" to="/login" class="tiger-btn">로그인</router-link>
@@ -36,5 +36,13 @@ async function handleLogout() {
 }
 #logo {
   font-size: 3rem;
+  color: black;
+  display: flex;
+  align-items: center;
+}
+.title {
+  color: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 </style>
