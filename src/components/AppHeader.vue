@@ -5,7 +5,7 @@
     </div>
     <div class="header__col">
       <button class="tiger-btn">로그아웃</button>
-      <button class="tiger-btn">회원가입</button>
+      <router-link to="/join" class="tiger-btn">회원가입</router-link>
     </div>
   </header>
 </template>
@@ -22,12 +22,16 @@
   border-bottom: 1px solid lightgray;
 }
 .header__col {
-  position: relative;
+  display: flex;
 }
 #logo {
   font-size: 3rem;
 }
 .tiger-btn {
+  color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 1.3rem;
   font-weight: 600;
   background-color: gold;
