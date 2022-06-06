@@ -1,5 +1,6 @@
 import store from "@/store";
 import axios from "axios";
+
 //공통
 const FAIL_MESSAGE_NETWORK = "fail-network";
 //login
@@ -48,8 +49,25 @@ async function logout() {
   }
 }
 
+async function refreshToken() {
+  try {
+    if (store.state.authToken) {
+      const response = await axios.get("/member/refreshToken");
+      store.dispatch("saveAuth", {
+        userId: response.data.mid,
+        authToken: response.data.newAccessToken,
+      });
+      return true;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+  return false;
+}
+
 export default {
   join,
   login,
   logout,
+  refreshToken,
 };
