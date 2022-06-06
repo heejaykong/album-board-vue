@@ -10,8 +10,8 @@
       <span>작성일: {{ new Date(board.bdate).toLocaleDateString() }}</span>
       <span>조회수: {{ board.bhitcount }}</span>
       <router-link :to="`/?pageNo=${pageNo}`">목록</router-link>
-      <router-link :to="`/updateform?bno=${bno}&pageNo=${pageNo}`">수정</router-link>
-      <button @click="handleRemove">삭제</button>
+      <router-link v-if="isMyBoard()" :to="`/updateform?bno=${bno}&pageNo=${pageNo}`">수정</router-link>
+      <button v-if="isMyBoard()" @click="handleRemove">삭제</button>
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@
 import { ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import apiBoard from "@/apis/board";
+import store from "@/store";
 
 const SUCCESS_MESSAGE = "successful";
 const FAIL_MESSAGE = "failed";
@@ -33,6 +34,11 @@ const hit = route.query.hit;
 
 const board = ref(null);
 const battach = ref(null);
+
+function isMyBoard() {
+  if (board.value.mid === store.state.userId) return true;
+  return false
+}
 
 async function handleRemove() {
   const result = await apiBoard.deleteBoard(bno);
