@@ -1,23 +1,25 @@
 <template>
-  <div class="box-item">
-    <router-link :to="`/read?bno=${board.bno}&pageNo=${pageNo}&hit=true`">
-      <div v-if="board.battachoname" class="thumbnail">
-        <img :src="battach" width="200" height="200" alt="" />
-      </div>
-      <div v-if="!board.battachoname" class="thumbnail">
-        <img :src="require('@/assets/no-image.jpg')" width="300" alt="" />
-      </div>
-      <span>{{ board.btitle }}</span>
-      <span>{{ board.mid }}</span>
-      <span>{{ new Date(board.bdate).toLocaleDateString() }}</span>
-      <span>{{ board.bhitcount }}</span>
-    </router-link>
+  <div @click="handleBoardItemClick" class="box-item">
+    <div v-if="board.battachoname" class="thumbnail">
+      <img :src="battach" width="200" height="200" alt="" />
+    </div>
+    <div v-if="!board.battachoname" class="thumbnail">
+      <img :src="require('@/assets/no-image.jpg')" width="300" alt="" />
+    </div>
+    <span>{{ board.btitle }}</span>
+    <span>{{ board.mid }}</span>
+    <span>{{ new Date(board.bdate).toLocaleDateString() }}</span>
+    <span>{{ board.bhitcount }}</span>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import apiBoard from "@/apis/board";
+import store from "@/store";
+
+const router = useRouter();
 
 const props = defineProps({
   board: Object,
@@ -25,6 +27,14 @@ const props = defineProps({
 });
 
 const battach = ref(null);
+
+function handleBoardItemClick() {
+  if (!store.state.userId) {
+    router.push(`/login`);
+    return;
+  }
+  router.push(`/read?bno=${props.board.bno}&pageNo=${props.pageNo}&hit=true`);
+}
 
 async function loadImage(bno) {
   const blob = await apiBoard.download(bno);
