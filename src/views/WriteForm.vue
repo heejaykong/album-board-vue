@@ -16,6 +16,7 @@
 import { ref, reactive } from "vue";
 import { useRouter } from "vue-router";
 import apiBoard from "@/apis/board";
+import store from "@/store";
 const router = useRouter();
 
 const imageInput = ref(null);
@@ -28,7 +29,7 @@ async function writeBoard() {
   const formData = new FormData();
   formData.append("btitle", board.btitle);
   formData.append("bcontent", board.bcontent);
-  formData.append("mid", "user");
+  formData.append("mid", store.state.userId);
   formData.append("battach", imageInput.value.files[0]);
   const result = await apiBoard.writeBoard(formData);
   if (result) {
