@@ -25,6 +25,10 @@ const routes = [
     path: "/join",
     component: () => import(/* webpackChunkName: "auth" */ "../views/auth/Join.vue"),
   },
+  {
+    path: "/login",
+    component: () => import(/* webpackChunkName: "auth" */ "../views/auth/Login.vue"),
+  },
 ];
 
 const router = createRouter({

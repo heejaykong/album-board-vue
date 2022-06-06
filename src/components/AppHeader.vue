@@ -4,13 +4,15 @@
       <router-link to="/" id="logo">🐱</router-link>
     </div>
     <div class="header__col">
-      <button class="tiger-btn">로그아웃</button>
-      <router-link to="/join" class="tiger-btn">회원가입</router-link>
+      <router-link v-if="!$store.state.userId" to="/login" class="tiger-btn">로그인</router-link>
+      <button v-if="$store.state.userId" class="tiger-btn">로그아웃</button>
+      <router-link v-if="!$store.state.userId" to="/join" class="tiger-btn">회원가입</router-link>
     </div>
   </header>
 </template>
 
-<script setup></script>
+<script setup>
+</script>
 
 <style scoped>
 .header {
