@@ -1,16 +1,14 @@
 <template>
-  <form @submit.prevent="handleLogin">
-    아이디:
-    <input type="text" v-model="user.mid" placeholder="아이디를 입력해 주세요."/>
-    비밀번호:
-    <input type="text" v-model="user.mpassword" placeholder="비밀번호를 입력해 주세요."/>
-    <input type="submit" value="로그인"  class="tiger-btn"/>
-  </form>
-  <AlertDialog
-    @close="showAlertDialog=false"
-    v-if="showAlertDialog"
-    :message="dialogMessage"
-    :loading="loading"/>
+  <main>
+    <form @submit.prevent="handleLogin">
+      아이디:
+      <input type="text" v-model="user.mid" placeholder="아이디를 입력해 주세요." />
+      비밀번호:
+      <input type="text" v-model="user.mpassword" placeholder="비밀번호를 입력해 주세요." />
+      <input type="submit" value="로그인" class="tiger-btn submit-btn" />
+    </form>
+    <AlertDialog @close="showAlertDialog = false" v-if="showAlertDialog" :message="dialogMessage" :loading="loading" />
+  </main>
 </template>
 
 <script setup>
@@ -39,10 +37,10 @@ async function handleLogin() {
 
   const result = await apiAuth.login(user);
   if (result === FAIL_MESSAGE_NETWORK) {
-    dialogMessage.value = FAIL_MESSAGE_NETWORK
+    dialogMessage.value = FAIL_MESSAGE_NETWORK;
   }
   if (result === FAIL_MESSAGE_401) {
-    dialogMessage.value = FAIL_MESSAGE_401
+    dialogMessage.value = FAIL_MESSAGE_401;
   }
   if (result === SUCCESS_MESSAGE) {
     // dialogMessage.value = SUCCESS_MESSAGE
@@ -53,4 +51,21 @@ async function handleLogin() {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+form input {
+  width: 500px;
+}
+.submit-btn {
+  margin-top: 2rem;
+}
+</style>
