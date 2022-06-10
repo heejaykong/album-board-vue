@@ -1,10 +1,14 @@
 # album-board-vue
+### [프론트] Vue.js를 이용한 앨범게시판 만들기 미니 프로젝트
 
+(백엔드 코드가 궁금하다면 이 프로젝트의 [백엔드 저장소](https://github.com/heejaykong/album-board-springboot)를 확인해 주세요.)
+
+1. 사용한 스택:
 - 게시물CRUD 통신: `axios` 활용
 - Auth기능: `Spring Security`, `JWT`, `Redis` 활용
 - 상태관리: `vuex` 활용
 
----
+2. 시연 화면:
 
 <img src="https://github.com/heejaykong/album-board-vue/blob/master/src/assets/%EC%8B%9C%EC%97%B01__vuex_store%26read.gif" alt="gif"/>
 
