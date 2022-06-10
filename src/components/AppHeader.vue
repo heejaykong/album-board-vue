@@ -4,6 +4,7 @@
       <router-link to="/" id="logo">🐱<span class="title">앨범게시판</span></router-link>
     </div>
     <div class="header__col">
+      <span v-if="$store.state.userId" class="greetings"><span id="userid">{{$store.state.userId}}</span> 님 안녕하세요!</span>
       <router-link v-if="!$store.state.userId" to="/login" class="tiger-btn">로그인</router-link>
       <button v-if="$store.state.userId" @click="handleLogout" class="tiger-btn">로그아웃</button>
       <router-link v-if="!$store.state.userId" to="/join" class="tiger-btn">회원가입</router-link>
@@ -33,6 +34,7 @@ async function handleLogout() {
 }
 .header__col {
   display: flex;
+  align-items: center;
 }
 #logo {
   font-size: 3rem;
@@ -42,6 +44,15 @@ async function handleLogout() {
 }
 .title {
   color: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+.greetings {
+  display: inline-block;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+.greetings #userid {
   font-size: 1.2rem;
   font-weight: 600;
 }
