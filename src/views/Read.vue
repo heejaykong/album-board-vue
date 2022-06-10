@@ -1,5 +1,6 @@
 <template>
   <div v-if="board">
+  <main>
     <div class="box-item">
       <img v-if="board.battachoname" :src="battach" alt=""/>
       <div class="content">
@@ -9,10 +10,13 @@
         <span>작성일: <strong>{{ new Date(board.bdate).toLocaleDateString() }}</strong></span>
         <span>조회수: <strong>{{ board.bhitcount }}</strong></span>
       </div>
-      <router-link :to="`/?pageNo=${pageNo}`" class="tiger-btn">목록</router-link>
-      <router-link v-if="isMyBoard()" :to="`/updateform?bno=${bno}&pageNo=${pageNo}`" class="tiger-btn">수정</router-link>
-      <button v-if="isMyBoard()" @click="handleRemove" class="tiger-btn tiger-btn-danger">삭제</button>
+      <div class="buttons">
+        <router-link :to="`/?pageNo=${pageNo}`" class="tiger-btn">목록</router-link>
+        <router-link v-if="isMyBoard()" :to="`/updateform?bno=${bno}&pageNo=${pageNo}`" class="tiger-btn">수정</router-link>
+        <button v-if="isMyBoard()" @click="handleRemove" class="tiger-btn tiger-btn-danger">삭제</button>
+      </div>
     </div>
+  </main>
   </div>
 </template>
 
@@ -61,6 +65,12 @@ getBoard();
 </script>
 
 <style scoped>
+main {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .box-item {
   display: flex;
   flex-direction: column;
@@ -72,6 +82,10 @@ img {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  font-size: 0.8rem;
+  font-size: 1.2rem;
+}
+.buttons {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>
