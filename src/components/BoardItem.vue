@@ -55,7 +55,7 @@ loadImage(props.board.bno);
   overflow: hidden;
 }
 .box-item:hover {
-  background-color: black;
+  cursor: pointer;
 }
 .thumbnail {
   display: block;
